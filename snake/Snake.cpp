@@ -3,11 +3,12 @@
 #include "Grid.h"
 
 
-Snake::Snake(int startXCoor, int startYCoor) {
+Snake::Snake(int startXCoor, int startYCoor, bool keyboardInput = true) {
 	size = 1;
 	Coordinate startingCoordinate = Coordinate(startXCoor, startYCoor);
 	positions.push_back(startingCoordinate);
 	direction = Direction::RIGHT;
+	this->keyboardInput = keyboardInput;
 }
 
 SnakeType Snake::snakePos(int xCoordinate, int yCoordinate) {
@@ -102,9 +103,9 @@ bool Snake::move(Direction directionInput, Coordinate fruitPos) {
 
 		direction = Direction::LEFT;
 		
+		Coordinate head = positions[0];
 		positions.pop_back();
 
-		Coordinate head = positions[0];
 		Coordinate newHead = Coordinate(head.xCoordinate - 1, head.yCoordinate);
 
 		positions.insert(positions.begin(), newHead);
@@ -116,10 +117,9 @@ bool Snake::move(Direction directionInput, Coordinate fruitPos) {
 		if (direction == Direction::LEFT) {
 			return false;
 		}
-
+		Coordinate head = positions[0];
 		positions.pop_back();
 
-		Coordinate head = positions[0];
 		Coordinate newHead = Coordinate(head.xCoordinate + 1, head.yCoordinate);
 
 		positions.insert(positions.begin(), newHead);
@@ -131,10 +131,9 @@ bool Snake::move(Direction directionInput, Coordinate fruitPos) {
 		if (direction == Direction::DOWN) {
 			return false;
 		}
-
+		Coordinate head = positions[0];
 		positions.pop_back();
 
-		Coordinate head = positions[0];
 		Coordinate newHead = Coordinate(head.xCoordinate, head.yCoordinate - 1);
 
 		positions.insert(positions.begin(), newHead);
@@ -146,10 +145,9 @@ bool Snake::move(Direction directionInput, Coordinate fruitPos) {
 		if (direction == Direction::UP) {
 			return false;
 		}
-
+		Coordinate head = positions[0];
 		positions.pop_back();
 
-		Coordinate head = positions[0];
 		Coordinate newHead = Coordinate(head.xCoordinate, head.yCoordinate + 1);
 
 		positions.insert(positions.begin(), newHead);
@@ -172,4 +170,3 @@ bool Snake::move(Direction directionInput, Coordinate fruitPos) {
 	return false;
 
 }
-

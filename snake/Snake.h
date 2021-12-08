@@ -24,13 +24,13 @@ class Snake
 {
 private:
 	int size;
-	Direction direction;
 
 public:
 	SnakeType snakePos(int xCoordinate, int yCoordinate);
-	Snake(int startXCoor, int startYCoor);
+	Snake(int startXCoor, int startYCoor, bool keyboardInput);
 	void grow();
 	bool move(Direction directionInput, Coordinate fruitPos);
 	std::vector<Coordinate> positions;
-
+	Direction direction;
+	bool keyboardInput;
 };
